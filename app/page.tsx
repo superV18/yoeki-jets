@@ -15,6 +15,8 @@ export default function Home() {
   const [loading, setLoading] = useState(true)
   const [isBookingOpen, setIsBookingOpen] = useState(false)
 
+  const openBookingModal = () => setIsBookingOpen(true)
+
   useEffect(() => {
     // Check if preloader has been shown before
     const hasSeenPreloader = sessionStorage.getItem('hasSeenPreloader')
@@ -37,12 +39,12 @@ export default function Home() {
   return (
     <main className="relative">
       <Navigation />
-      <HeroSection />
+      <HeroSection onBookingClick={openBookingModal} />
       <AboutSection />
-      <FleetSection />
+      <FleetSection onBookingClick={openBookingModal} />
       <AdvantagesSection />
-      <GlobalSection />
-      <BookingButton onClick={() => setIsBookingOpen(true)} />
+      <GlobalSection onBookingClick={openBookingModal} />
+      <BookingButton onClick={openBookingModal} />
       <BookingModal 
         isOpen={isBookingOpen} 
         onClose={() => setIsBookingOpen(false)} 

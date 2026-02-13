@@ -8,7 +8,11 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
 }
 
-export default function FleetSection() {
+interface FleetSectionProps {
+  onBookingClick: () => void
+}
+
+export default function FleetSection({ onBookingClick }: FleetSectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null)
   const planeRef = useRef<HTMLDivElement>(null)
   const contentLeftRef = useRef<HTMLDivElement>(null)
@@ -279,7 +283,7 @@ export default function FleetSection() {
     <section
       id="fleet"
       ref={sectionRef}
-      className="relative h-screen overflow-hidden bg-gradient-to-b from-gray-100 to-gray-200"
+      className="relative h-screen w-full bg-gradient-to-b from-gray-100 to-gray-200 overflow-hiddenscroll-mt-16 md:scroll-mt-20"
     >
       {/* Content */}
       <div className="relative z-10 h-full flex flex-col md:flex-row items-center justify-between px-4 sm:px-6 md:px-8 lg:px-12 py-8">
@@ -375,7 +379,9 @@ export default function FleetSection() {
 
       {/* CTA - Responsive Position */}
       <div ref={ctaRef} className="absolute bottom-4 sm:bottom-8 md:bottom-20 right-4 sm:right-6 md:right-12">
-        <button className="group relative bg-gradient-to-r from-gray-900 to-gray-800 text-white px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-full font-semibold hover:from-gray-800 hover:to-gray-700 transition-all duration-500 shadow-2xl flex items-center space-x-2 sm:space-x-3 text-sm sm:text-base overflow-hidden hover:scale-110 active:scale-95">
+        <button 
+          onClick={onBookingClick}
+          className="group relative bg-gradient-to-r from-gray-900 to-gray-800 text-white px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-full font-semibold hover:from-gray-800 hover:to-gray-700 transition-all duration-500 shadow-2xl flex items-center space-x-2 sm:space-x-3 text-sm sm:text-base overflow-hidden hover:scale-110 active:scale-95">
           <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
           <span className="relative hidden sm:inline font-bold tracking-wide">Book the Flight</span>
           <span className="relative sm:hidden font-bold">Book</span>

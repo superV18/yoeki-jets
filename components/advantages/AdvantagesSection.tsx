@@ -84,7 +84,7 @@ export default function AdvantagesSection() {
     <section
       id="advantages"
       ref={sectionRef}
-      className="relative min-h-screen bg-gradient-to-b from-gray-200 to-gray-100 py-12 sm:py-16 md:py-20"
+      className="relative min-h-screen bg-gradient-to-b from-gray-200 to-gray-100 py-12 sm:py-16 md:py-20 scroll-mt-16 md:scroll-mt-20"
     >
       <div className="container mx-auto px-4 sm:px-6">
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-800 mb-8 sm:mb-12 md:mb-16">

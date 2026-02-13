@@ -66,7 +66,7 @@ export default function AboutSection() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative min-h-screen py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 px-4 sm:px-6 md:px-8 lg:px-10 bg-cover bg-center bg-fixed"
+      className="relative min-h-screen py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 px-4 sm:px-6 md:px-8 lg:px-10 bg-cover bg-center bg-fixed scroll-mt-16 md:scroll-mt-20"
       style={{
         backgroundImage: "url('/cloud.webp')",
       }}

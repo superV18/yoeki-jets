@@ -14,7 +14,11 @@ const locations = [
   'Mumbai', 'Singapore', 'Paris', 'Shanghai', 'Los Angeles',
 ]
 
-export default function GlobalSection() {
+interface GlobalSectionProps {
+  onBookingClick: () => void
+}
+
+export default function GlobalSection({ onBookingClick }: GlobalSectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null)
   
   // Globe Refs
@@ -239,7 +243,7 @@ export default function GlobalSection() {
     <section
       id="global"
       ref={sectionRef}
-      className="relative min-h-[300vh] bg-[#050505] overflow-hidden font-sans"
+      className="relative min-h-[300vh] bg-[#050505] overflow-hidden font-sans scroll-mt-16 md:scroll-mt-20"
     >
       {/* Sticky Background & Globe */}
       <div className="sticky top-0 w-full h-screen flex items-center justify-center z-0 overflow-hidden pointer-events-none">
@@ -376,7 +380,7 @@ export default function GlobalSection() {
             </div>
 
             <div className="flex justify-center mb-16">
-              <div ref={magneticBtnWrapRef} className="p-8 -m-8 cursor-pointer group">
+              <div ref={magneticBtnWrapRef} className="p-8 -m-8 cursor-pointer group" onClick={onBookingClick}>
                 <div 
                   ref={magneticBtnRef} 
                   className="flex items-center bg-[#181818] rounded-full p-1.5 border border-white/10 hover:border-white/30 transition-colors duration-300 shadow-[0_0_40px_rgba(255,255,255,0.05)]"

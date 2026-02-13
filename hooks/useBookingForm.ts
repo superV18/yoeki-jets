@@ -29,7 +29,7 @@ export function useBookingForm() {
 
     try {
       // Mock API call - replace with your actual API endpoint
-      const response = await axios.post('/api/bookings', data)
+      const response = await axios.post('/api/booking', data)
       
       // Simulate API delay
       await new Promise((resolve) => setTimeout(resolve, 1500))
