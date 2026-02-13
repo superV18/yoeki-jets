@@ -68,6 +68,20 @@ export default function Navigation() {
           duration: 0.5,
           ease: 'power3.out',
         })
+        
+        // Stagger menu items animation
+        const menuItems = mobileMenuRef.current.querySelectorAll('.menu-item')
+        gsap.fromTo(menuItems,
+          { x: 50, opacity: 0 },
+          { 
+            x: 0, 
+            opacity: 1, 
+            duration: 0.4, 
+            stagger: 0.08,
+            ease: 'power3.out',
+            delay: 0.2
+          }
+        )
       } else {
         gsap.to(mobileMenuRef.current, {
           x: '100%',
@@ -182,73 +196,133 @@ export default function Navigation() {
       {/* Mobile Menu */}
       <div 
         ref={mobileMenuRef}
-        className="fixed top-0 right-0 h-screen w-full sm:w-80 bg-black/95 backdrop-blur-2xl border-l border-white/10 z-[105] md:hidden shadow-2xl pointer-events-none"
+        className="fixed top-0 right-0 h-screen w-[85vw] sm:w-[400px] bg-gradient-to-br from-black via-gray-900 to-black backdrop-blur-2xl border-l border-white/20 z-[105] md:hidden shadow-2xl pointer-events-none overflow-y-auto"
         style={{ 
-          boxShadow: '-10px 0 30px rgba(0, 0, 0, 0.5)',
+          boxShadow: '-20px 0 50px rgba(0, 0, 0, 0.8)',
           transform: 'translateX(100%)',
           opacity: 0,
         }}
       >
-        <div className="flex flex-col items-start gap-8 p-8 pt-24 pointer-events-auto">
-          <a 
-            href="#about" 
-            onClick={closeMobileMenu}
-            className="group relative text-white text-2xl font-light tracking-wider hover:text-blue-400 transition-all duration-300 w-full py-3 border-b border-white/10 hover:border-blue-400/50"
-          >
-            <span className="relative z-10">About</span>
-            <span className="absolute left-0 top-1/2 -translate-y-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-cyan-400 group-hover:w-8 transition-all duration-500 -ml-10"></span>
-          </a>
-          <a 
-            href="#fleet" 
-            onClick={closeMobileMenu}
-            className="group relative text-white text-2xl font-light tracking-wider hover:text-blue-400 transition-all duration-300 w-full py-3 border-b border-white/10 hover:border-blue-400/50"
-          >
-            <span className="relative z-10">Our Fleet</span>
-            <span className="absolute left-0 top-1/2 -translate-y-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-cyan-400 group-hover:w-8 transition-all duration-500 -ml-10"></span>
-          </a>
-          <a 
-            href="#advantages" 
-            onClick={closeMobileMenu}
-            className="group relative text-white text-2xl font-light tracking-wider hover:text-blue-400 transition-all duration-300 w-full py-3 border-b border-white/10 hover:border-blue-400/50"
-          >
-            <span className="relative z-10">Advantages</span>
-            <span className="absolute left-0 top-1/2 -translate-y-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-cyan-400 group-hover:w-8 transition-all duration-500 -ml-10"></span>
-          </a>
-          <a 
-            href="#global" 
-            onClick={closeMobileMenu}
-            className="group relative text-white text-2xl font-light tracking-wider hover:text-blue-400 transition-all duration-300 w-full py-3 border-b border-white/10 hover:border-blue-400/50"
-          >
-            <span className="relative z-10">Global</span>
-            <span className="absolute left-0 top-1/2 -translate-y-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-cyan-400 group-hover:w-8 transition-all duration-500 -ml-10"></span>
-          </a>
+        {/* Close Button */}
+        <button
+          onClick={closeMobileMenu}
+          className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 transition-all duration-300 pointer-events-auto group z-10"
+          aria-label="Close menu"
+        >
+          <svg className="w-5 h-5 text-white group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
 
-          <div className="flex flex-col gap-4 mt-8 w-full">
+        <div className="flex flex-col h-full justify-between p-6 sm:p-8 pt-20 pb-8 pointer-events-auto">
+          {/* Logo Section */}
+          <div className="mb-12">
+            <h2 className="text-white text-3xl font-light tracking-[0.3em] mb-2" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+              Yoeki Jets
+            </h2>
+            <div className="h-px w-20 bg-gradient-to-r from-blue-400 to-cyan-400"></div>
+          </div>
+
+          {/* Navigation Links */}
+          <nav className="flex-1 flex flex-col gap-1">
             <a 
-              href="tel:+971544325050" 
+              href="#about" 
               onClick={closeMobileMenu}
-              className="text-white/80 text-base hover:text-white transition-all duration-300 backdrop-blur-sm bg-white/5 p-4 rounded-lg border border-white/10 hover:border-blue-400/50 hover:bg-white/10"
+              className="menu-item group relative text-white text-xl sm:text-2xl font-light tracking-wide hover:tracking-wider transition-all duration-300 w-full py-4 px-4 rounded-lg hover:bg-white/5 active:bg-white/10"
             >
-              +971 54 432 5050
+              <div className="flex items-center justify-between">
+                <span className="relative z-10">About</span>
+                <svg className="w-5 h-5 text-white/40 group-hover:text-blue-400 group-hover:translate-x-1 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+              <span className="absolute bottom-0 left-4 right-4 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></span>
             </a>
             <a 
-              href="mailto:info@yoekijets.com" 
+              href="#fleet" 
               onClick={closeMobileMenu}
-              className="text-white/80 text-base hover:text-white transition-all duration-300 backdrop-blur-sm bg-white/5 p-4 rounded-lg border border-white/10 hover:border-blue-400/50 hover:bg-white/10"
+              className="menu-item group relative text-white text-xl sm:text-2xl font-light tracking-wide hover:tracking-wider transition-all duration-300 w-full py-4 px-4 rounded-lg hover:bg-white/5 active:bg-white/10"
             >
-              info@yoekijets.com
+              <div className="flex items-center justify-between">
+                <span className="relative z-10">Our Fleet</span>
+                <svg className="w-5 h-5 text-white/40 group-hover:text-blue-400 group-hover:translate-x-1 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+              <span className="absolute bottom-0 left-4 right-4 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></span>
             </a>
+            <a 
+              href="#advantages" 
+              onClick={closeMobileMenu}
+              className="menu-item group relative text-white text-xl sm:text-2xl font-light tracking-wide hover:tracking-wider transition-all duration-300 w-full py-4 px-4 rounded-lg hover:bg-white/5 active:bg-white/10"
+            >
+              <div className="flex items-center justify-between">
+                <span className="relative z-10">Advantages</span>
+                <svg className="w-5 h-5 text-white/40 group-hover:text-blue-400 group-hover:translate-x-1 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+              <span className="absolute bottom-0 left-4 right-4 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></span>
+            </a>
+            <a 
+              href="#global" 
+              onClick={closeMobileMenu}
+              className="menu-item group relative text-white text-xl sm:text-2xl font-light tracking-wide hover:tracking-wider transition-all duration-300 w-full py-4 px-4 rounded-lg hover:bg-white/5 active:bg-white/10"
+            >
+              <div className="flex items-center justify-between">
+                <span className="relative z-10">Global</span>
+                <svg className="w-5 h-5 text-white/40 group-hover:text-blue-400 group-hover:translate-x-1 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+              <span className="absolute bottom-0 left-4 right-4 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></span>
+            </a>
+          </nav>
+
+          {/* Contact Section */}
+          <div className="menu-item mt-auto pt-6 border-t border-white/10">
+            <p className="text-white/50 text-xs uppercase tracking-widest mb-4 font-semibold">Get in Touch</p>
+            <div className="flex flex-col gap-3">
+              <a 
+                href="tel:+971544325050" 
+                onClick={closeMobileMenu}
+                className="group flex items-center gap-3 text-white/90 text-sm hover:text-white transition-all duration-300 bg-gradient-to-r from-white/5 to-white/10 p-4 rounded-xl border border-white/10 hover:border-blue-400/50 hover:shadow-lg hover:shadow-blue-500/20"
+              >
+                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-blue-500/20 transition-all duration-300">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[10px] text-white/40 uppercase tracking-wide">Phone</span>
+                  <span className="font-light">+971 54 432 5050</span>
+                </div>
+              </a>
+              <a 
+                href="mailto:info@yoekijets.com" 
+                onClick={closeMobileMenu}
+                className="group flex items-center gap-3 text-white/90 text-sm hover:text-white transition-all duration-300 bg-gradient-to-r from-white/5 to-white/10 p-4 rounded-xl border border-white/10 hover:border-blue-400/50 hover:shadow-lg hover:shadow-blue-500/20"
+              >
+                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-blue-500/20 transition-all duration-300">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[10px] text-white/40 uppercase tracking-wide">Email</span>
+                  <span className="font-light">info@yoekijets.com</span>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Mobile Menu Overlay */}
-      {isMobileMenuOpen && (
-        <div 
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[104] md:hidden"
-          onClick={closeMobileMenu}
-        />
-      )}
+      <div 
+        className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-[104] md:hidden transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+        onClick={closeMobileMenu}
+      />
     </>
   )
 }
