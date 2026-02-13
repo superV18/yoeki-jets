@@ -44,7 +44,6 @@ export default function Home() {
       <FleetSection onBookingClick={openBookingModal} />
       <AdvantagesSection />
       <GlobalSection onBookingClick={openBookingModal} />
-      <BookingButton onClick={openBookingModal} />
       <BookingModal 
         isOpen={isBookingOpen} 
         onClose={() => setIsBookingOpen(false)} 
