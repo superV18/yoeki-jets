@@ -65,12 +65,15 @@ export default function GlobalSection() {
       }
 
       // 2. CONTINUOUS GLOBE ANIMATIONS (Rotation & Orbits)
-      gsap.to(globeRef.current?.querySelector('.globe-image'), {
-        rotation: 360,
-        duration: 150,
-        repeat: -1,
-        ease: 'none',
-      })
+      const globeImage = globeRef.current?.querySelector('.globe-image')
+      if (globeImage) {
+        gsap.to(globeImage, {
+          rotation: 360,
+          duration: 150,
+          repeat: -1,
+          ease: 'none',
+        })
+      }
 
       if (overlayRef.current) {
         const radius = 50

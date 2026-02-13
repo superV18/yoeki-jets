@@ -137,11 +137,11 @@ export default function Navigation() {
             </div>
 
             {/* Center Logo */}
-            <a href="#" ref={logoRef} className="absolute left-1/2 -translate-x-1/2">
+            <div ref={logoRef} className="absolute left-1/2 -translate-x-1/2">
               <h1 className="text-white text-xl sm:text-2xl md:text-3xl font-light tracking-[0.3em] hover:tracking-[0.35em] transition-all duration-300 cursor-pointer" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
                 Yoeki Jets
               </h1>
-            </a>
+            </div>
 
             {/* Right Contact */}
             <div className="hidden md:flex items-center gap-6 lg:gap-8">
